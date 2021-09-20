@@ -1,0 +1,46 @@
+﻿@model KrugerApp.Models.Vehicle
+@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+
+@{
+    ViewData["Title"] = "Nuevo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4><i class="fas fa-plus-circle me-2"></i>Agregar nuevo <i>vehículo</i></h4>
+<hr />
+<div class="row justify-content-md-center">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Mark" class="control-label"></label>
+                <input asp-for="Mark" class="form-control" />
+                <span asp-validation-for="Mark" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Plate" class="control-label"></label>
+                <input asp-for="Plate" class="form-control" />
+                <span asp-validation-for="Plate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VehicleTypeId" class="control-label"></label>
+                <select asp-for="VehicleTypeId" class="form-control" asp-items="ViewBag.VehicleTypeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CustomerId" class="control-label"></label>
+                <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
+            </div>
+            <div class="form-group text-center mt-2">
+                <input type="submit" value="Agregar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

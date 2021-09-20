@@ -1,0 +1,60 @@
+﻿@model IEnumerable<KrugerApp.Models.Vehicle>
+@addTagHelper "*, Microsoft.AspNetCore.Mvc.TagHelpers"
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Vehículos</h1>
+
+<p>
+    <a class="btn btn-success" asp-action="Create">
+        <i class="fas fa-plus me-2"></i>Agregar nuevo
+    </a>
+</p>
+<table class="table table-striped table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Mark)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Plate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Owner)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mark)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Plate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Owner.City)
+                </td>
+                <td class="text-end">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-light" asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-list-ul"></i></a>
+                        <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i></a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
